@@ -25,4 +25,6 @@ Note that the project makes use of Junit. So problem modelling and solution veri
 
 This project is configured to compile Scala and Java files. The jar file that is emitted will run on any JVM.
 
+If you are using Eclipse install the Maven and Scala plugins.
+
 Let me know if you have questions.
