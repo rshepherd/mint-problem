@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Built-By: rshepherd
-Build-Jdk: 1.6.0_33
-Main-Class: hps.mint.App
-Created-By: Maven Integration for Eclipse
-
