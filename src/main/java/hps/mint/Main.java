@@ -10,9 +10,9 @@ public class Main
     public void run(String[] args)
     {
         System.out.println("Running Exact Change..");
-        ExactChange.main(args);
+        hps.mint.ExactChange.main(args);
         
         System.out.println("\nRunning Exchange..");
-        Exchange.main(args);
+        hps.mint.Exchange.main(args);
     }
 }
