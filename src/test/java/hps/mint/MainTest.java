@@ -1,14 +1,17 @@
 package hps.mint;
 
-import org.junit.Test;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 public class MainTest 
 {
     @Test
     public void testApp()
     {
-        new Main().test();
+        String[] args = new String[1];
+        args[0] = "1";
+        new Main().run(args);
         assertTrue(true);
     }
 }

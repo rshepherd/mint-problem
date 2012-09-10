@@ -1,36 +1,35 @@
 package hps.mint
 
-/*
- * Denom=List(1, 5, 19, 25, 40)
- * Cost=475.0
- * Runtime=41723
- */
-object ExactChange extends App with Weighted {
+object ExactChange extends App with Weighted with Printer {
 
   val MultiFiveWeight = parseWeight(args)
 
   def compute(denoms: List[Int]) = {
-    val costs = new Array[Float](100) 
-    costs(0) = 0.0F
+    val coinCounts = new Array[Float](100) 
+    coinCounts(0) = 0.0F
     for (i <- 1 to 99) {
       var min = Float.PositiveInfinity
       for (denom <- denoms if denom <= i)
-        if (costs(i - denom) + 1.0F < min)
-          min = costs(i - denom) + 1.0F;
-      costs(i) = min
+        if (coinCounts(i - denom) + 1.0F < min)
+          min = coinCounts(i - denom) + 1.0F;
+      coinCounts(i) = min
     }
-    applyWeight(costs).sum
+    
+    applyWeight(coinCounts).sum
   }
 
   val start = System.currentTimeMillis
-  var denom = List[Int]()
-  var cost = Float.PositiveInfinity
-  (2 to 99).toList.combinations(4)
-    .foreach(c => {
-      val result = compute(1 :: c)
-      if (result < cost) { cost = result; denom = 1 :: c }
+  var bestDenoms = List[Int]()
+  var bestNumber = Float.PositiveInfinity
+  //(2 to 99).toList.combinations(4)
+  List(5,10,25,50).combinations(4)
+    .foreach(d => {
+      val denoms = 1 :: d ::: List(100)
+      val result = compute(denoms)
+      if (result < bestNumber) { bestNumber = result; bestDenoms = denoms }
     })
 
-  println("Denom=" + denom + "\nCost=" + cost 
-      + "\nRuntime=" + (System.currentTimeMillis - start) )
+  println("Denom\t" + bestDenoms 
+          + "\nExact#\t" + bestNumber 
+          + "\nRuntime\t" + (System.currentTimeMillis - start) )
 }
