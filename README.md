@@ -1,8 +1,6 @@
 mint-problem
 ============
 
-Designing efficient denominations of coins using dynamic programming.
-
 This project is mavenized and uses scala, so install both of them.
 
 http://maven.apache.org/
