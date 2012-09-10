@@ -6,6 +6,7 @@ Designing efficient denominations of coins using dynamic programming.
 This project is mavenized and uses scala, so install both of them.
 
 http://maven.apache.org/
+
 http://www.scala-lang.org/
 
 Maven makes it quite easy to build and test the project. 
