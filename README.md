@@ -15,6 +15,8 @@ Once you have cloned the project, from the project root you can execute:
 
 This command will compile, run the tests, package and emit an executable jar file into the /target directory. 
 
+There are lots of convenient Maven commands: http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
+
 You can then execute the jar file with the following command
 
     java -jar target/mint-1.0.0.jar

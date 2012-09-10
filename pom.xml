@@ -71,7 +71,7 @@
               <configuration>
                   <archive>
                       <manifest>
-                          <mainClass>hps.mint.App</mainClass>
+                          <mainClass>hps.mint.Main</mainClass>
                       </manifest>
                   </archive>
               </configuration>
