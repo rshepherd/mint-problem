@@ -23,7 +23,7 @@ Alternatively, you can just use the command
     
     mvn test
 
-To compile and run the program without packaging it as a jar.
+..to compile and run the program without packaging it as a jar.
 
 There are lots of convenient Maven commands: http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 

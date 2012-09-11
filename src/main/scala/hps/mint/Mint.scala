@@ -5,7 +5,7 @@ import collection.JavaConverters._
 
 abstract class Mint(weight: Float) {
 
-  // implicitly converts Scala lists to Java lists for solution
+  // implicitly converts Scala lists to Java lists 
   implicit def toJavaList(lst: List[Int]) =
     seqAsJavaList(lst.map(i => i: java.lang.Integer))
 
@@ -23,7 +23,7 @@ abstract class Mint(weight: Float) {
       })
 
     val s = new Solution
-    s.denoms = denoms
+    s.denoms = denoms // implicit conversion
     s.number = number
     s.elapsed = System.currentTimeMillis - start
     s.weight = weight
@@ -33,6 +33,7 @@ abstract class Mint(weight: Float) {
   // ExactChange and Exchange supply implementations
   def compute(denoms: List[Int]): Float;
   
+  // For Java inter-op
   def compute(denoms: java.util.List[java.lang.Integer]): Float = {
     compute(seqAsJavaList(denoms.map(i => i: Int)).asScala.toList)
   }

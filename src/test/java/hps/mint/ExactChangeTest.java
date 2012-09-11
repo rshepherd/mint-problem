@@ -11,7 +11,7 @@ public class ExactChangeTest
 {
 
     @Test
-    public void test()
+    public void testComputationOnUsDenom()
     {
         ExactChange exact = new ExactChange(1.0F);
 

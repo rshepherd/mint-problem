@@ -11,7 +11,7 @@ public class ExchangeTest
 {
 
     @Test
-    public void test()
+    public void testComputationOnUsDenom()
     {
         Exchange exchange = new Exchange(1.0F);
 
