@@ -1,6 +1,6 @@
 package hps.mint
 
-import scala.collection.JavaConverters._
+import collection.JavaConversions._
 
 abstract class Mint(weight: Float) {
 
@@ -8,7 +8,7 @@ abstract class Mint(weight: Float) {
 
   def run() = {
     val start = System.currentTimeMillis
-    
+
     var denoms = List[Int]()
     var number = Float.PositiveInfinity
     //(2 to 99).toList.combinations(4)
@@ -17,9 +17,9 @@ abstract class Mint(weight: Float) {
         val result = compute(1 :: d ::: List(100))
         if (result < number) { number = result; denoms = d }
       })
-      
+
     val s = new Solution
-    s.denoms = denoms.asJava
+    s.denoms = denoms
     s.number = number
     s.elapsed = System.currentTimeMillis - start
     s.weight = weight
@@ -31,5 +31,8 @@ abstract class Mint(weight: Float) {
       costs(i) = costs(i) * weight
     costs
   }
+
+  implicit def toIntegerList(lst: List[Int]) =
+    seqAsJavaList(lst.map(i => i: java.lang.Integer))
 
 }

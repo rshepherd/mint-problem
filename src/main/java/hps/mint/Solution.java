@@ -1,7 +1,6 @@
 package hps.mint;
 
 import java.util.List;
-import scala.Int;
 
 public class Solution
 {
@@ -10,7 +9,7 @@ public class Solution
     }
 
     public Problem       problem;
-    public List<Int> denoms;
+    public List<Integer> denoms;
     public Float         number;
     public Long          elapsed;
     public Float         weight;
@@ -19,7 +18,7 @@ public class Solution
     {
         StringBuilder denomStr = new StringBuilder();
         denomStr.append("1");
-        for (Int d : denoms)
+        for (Integer d : denoms)
         {
             denomStr.append(d);
             denomStr.append(", ");
