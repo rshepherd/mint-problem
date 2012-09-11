@@ -26,7 +26,7 @@ public class Main
         Problem problem = Problem.EXACT;
         try
         {
-            problem = Problem.valueOf(args[1]);
+            problem = Problem.valueOf(args[1].toUpperCase());
         } catch (Exception e)
         {
             usage(args);
@@ -40,9 +40,9 @@ public class Main
     private static void usage(String[] args)
     {   
         String argStr = "";
-        for(String a : args) argStr += a; 
+        for(String a : args) argStr += ", " + a; 
         System.out.println("Invalid/missing arguments. " + argStr);
-        System.out.println("\tusage: java -jar mint-problem-1.0.0.jar 4.0 exact|exchange");
+        System.out.println("\tusage: java -jar mint-1.0.0.jar 4.0 exact|exchange");
     }
 
     public Solution run(Float weight, Problem problem)
