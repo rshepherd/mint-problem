@@ -17,7 +17,7 @@ public class Solution
     public void print()
     {
         StringBuilder denomStr = new StringBuilder();
-        denomStr.append("1");
+        denomStr.append("1, ");
         for (Integer d : denoms)
         {
             denomStr.append(d);
