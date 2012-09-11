@@ -1,8 +1,8 @@
 package hps.mint
 
-trait Printer {
+object Debug {
 
-  def printResults(denoms: List[Int], costs: Array[Float]) = {
+  def printDenomAndCoinCount(denoms: List[Int], costs: Array[Float]) {
     println("denom=" + denoms)
     var score = 0.0F;
     for (i <- 0 to 99) {
