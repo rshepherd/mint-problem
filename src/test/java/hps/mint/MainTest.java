@@ -8,9 +8,31 @@ import org.junit.Test;
 public class MainTest 
 {
     @Test
-    public void testApp()
+    public void testExactChange()
     {
-        new Main().run(1.0F, Problem.EXACT);
-        assertTrue(true);
+        Solution s = new Main().run(1.0F, Problem.EXACT);
+        assertTrue(s.problem == Problem.EXACT);
+    }
+    
+    @Test
+    public void testExchange()
+    {
+        Solution s = new Main().run(1.0F, Problem.EXCHANGE);
+        assertTrue(s.problem == Problem.EXCHANGE);
+    }
+
+    @Test
+    public void testBadArgs()
+    {
+        try
+        {
+            new Main().run(1.0F, null);
+        } 
+        catch (Exception e)
+        {
+            assertTrue(true);
+            return;
+        }
+        assertTrue(false);
     }
 }

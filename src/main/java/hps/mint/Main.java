@@ -20,7 +20,7 @@ public class Main
         catch (NumberFormatException e)
         {
             usage(args);
-            System.exit(-1);
+            throw new IllegalArgumentException(e);
         }
         
         Problem problem = Problem.EXACT;
@@ -30,7 +30,7 @@ public class Main
         } catch (Exception e)
         {
             usage(args);
-            System.exit(-1);
+            throw new IllegalArgumentException(e);
         }
 
         System.out.println("Executing " + problem.toString() + ". N = " + weight);
@@ -45,7 +45,7 @@ public class Main
         System.out.println("\tusage: java -jar mint-problem-1.0.0.jar 4.0 exact|exchange");
     }
 
-    public void run(Float weight, Problem problem)
+    public Solution run(Float weight, Problem problem)
     {
         Solution s = null;
         if (problem == Problem.EXACT)
@@ -57,6 +57,8 @@ public class Main
         }
         s.problem = problem;
         s.print();
+        
+        return s;
     }
 
 }

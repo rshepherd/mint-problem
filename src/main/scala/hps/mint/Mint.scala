@@ -1,11 +1,15 @@
 package hps.mint
 
 import collection.JavaConversions._
+import collection.JavaConverters._
 
 abstract class Mint(weight: Float) {
 
-  def compute(denoms: List[Int]): Float;
+  // implicitly converts Scala lists to Java lists for solution
+  implicit def toJavaList(lst: List[Int]) =
+    seqAsJavaList(lst.map(i => i: java.lang.Integer))
 
+  // Method to call to run the test on an ExactChange or Exchange instance
   def run() = {
     val start = System.currentTimeMillis
 
@@ -25,14 +29,18 @@ abstract class Mint(weight: Float) {
     s.weight = weight
     s
   }
+  
+  // ExactChange and Exchange supply implementations
+  def compute(denoms: List[Int]): Float;
+  
+  def compute(denoms: java.util.List[java.lang.Integer]): Float = {
+    compute(denoms.asScala.toList)
+  }
 
   def applyWeight(costs: Array[Float]) = {
     for (i <- 5 until costs.length - 1 by 5)
       costs(i) = costs(i) * weight
     costs
   }
-
-  implicit def toIntegerList(lst: List[Int]) =
-    seqAsJavaList(lst.map(i => i: java.lang.Integer))
 
 }
