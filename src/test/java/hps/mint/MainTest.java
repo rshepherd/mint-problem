@@ -26,7 +26,10 @@ public class MainTest
     {
         try
         {
-            new Main().run(1.0F, null);
+            String[] args = new String[2];
+            args[0] = "1.0";
+            args[1] = "Invalid";
+            Main.main(args);
         } 
         catch (Exception e)
         {

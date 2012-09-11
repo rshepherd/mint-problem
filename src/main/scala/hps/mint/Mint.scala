@@ -34,7 +34,7 @@ abstract class Mint(weight: Float) {
   def compute(denoms: List[Int]): Float;
   
   def compute(denoms: java.util.List[java.lang.Integer]): Float = {
-    compute(denoms.asScala.toList)
+    compute(seqAsJavaList(denoms.map(i => i: Int)).asScala.toList)
   }
 
   def applyWeight(costs: Array[Float]) = {

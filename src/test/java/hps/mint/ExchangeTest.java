@@ -18,7 +18,6 @@ public class ExchangeTest
         Integer[] d = { 1, 5, 10, 25, 50, 100 };
         List<Integer> denoms = Arrays.asList(d);
 
-        
         assertTrue(exchange.compute(denoms) == 275.0F);
     }
 
