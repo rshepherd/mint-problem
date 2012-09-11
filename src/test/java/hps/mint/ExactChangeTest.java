@@ -15,7 +15,7 @@ public class ExactChangeTest
     {
         ExactChange exact = new ExactChange(1.0F);
 
-        Integer[] d = { 1, 5, 10, 25, 50, 100 };
+        Integer[] d = { 1, 5, 10, 25, 50 };
         List<Integer> denoms = Arrays.asList(d);
 
         assertTrue(exact.compute(denoms) == 420.0F);

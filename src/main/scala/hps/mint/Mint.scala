@@ -18,7 +18,7 @@ abstract class Mint(weight: Float) {
     //(2 to 99).toList.combinations(4)
     List(5, 10, 25, 50).combinations(4)
       .foreach(d => {
-        val result = compute(1 :: d ::: List(100))
+        val result = compute(1 :: d )
         if (result < number) { number = result; denoms = d }
       })
 
