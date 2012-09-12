@@ -1,69 +1,25 @@
 package hps.mint;
 
-import hps.mint.Solution.Problem;
 
 public class Main
 {
     public static void main(String[] args)
     {
-        if (args.length != 2)
-        {
-            usage(args);
-            System.exit(-1);
-        }
-
-        Float weight = 1.0F;
-        try
-        {
-            weight = Float.valueOf(args[0]);
-        } 
-        catch (NumberFormatException e)
-        {
-            usage(args);
-            throw new IllegalArgumentException(e);
-        }
+        float weight = 4.0F;
         
-        Problem problem = Problem.EXACT;
-        try
-        {
-            problem = Problem.valueOf(args[1].toUpperCase());
-        } catch (Exception e)
-        {
-            usage(args);
-            throw new IllegalArgumentException(e);
-        }
+        
+        System.out.println("Executing " + ". N = " + weight);
 
-        System.out.println("Executing " + problem.toString() + ". N = " + weight);
-        new Main().run(weight, problem);
-    }
-
-    private static void usage(String[] args)
-    {   
-        String argStr = "";
-        for(String a : args) argStr += ", " + a; 
-        System.out.println("Invalid/missing arguments. " + argStr);
-        System.out.println("\tusage: java -jar mint-1.0.0.jar 4.0 exact|exchange");
-    }
-
-    public Solution run(Float weight, Problem problem)
-    {
         Solution s = null;
-        Mint mint;
-        if (problem == Problem.EXACT)
-        {
-        	//s = new ExactChange(weight).run();
-        	mint = new ExactChange(weight);
-        } else
-        {
-        	//s = new ExactChange(weight).run();
-        	mint = new Exchange(weight);
-        }
-        mint.compute();
-        mint.print();
-        //s.problem = problem;
-        //s.print();
-        
-        return s;
-    }
+        Mint mint1, mint2;
+        System.out.println("creating problem: exact");
+        mint1 = new ExactChange(weight);
+        mint1.solve();
+        mint1.print();
 
+        System.out.println("creating problem: exchange");
+        mint2 = new Exchange(weight);
+        mint2.solve();
+        mint2.print();
+    }
 }

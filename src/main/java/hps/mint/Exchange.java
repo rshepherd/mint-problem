@@ -22,7 +22,7 @@ public class Exchange extends Mint {
 		for( int i=0; i<100; i++ ) this.cachedCounts.add(ecn.cachedCounts.get(i));
 
 		for( int n=0; n<50; n++ ) {
-			this.cachedCounts.set(n, ecn.cachedDenoms.get(n));
+			this.cachedCounts.set(n, ecn.cachedCounts.get(n));
 			
 			// pLTD = pay (less than dollar)
 			// pMTD = pay (more than dollar)
@@ -39,8 +39,8 @@ public class Exchange extends Mint {
 				this.cachedCounts.set(n, Math.min(this.cachedCounts.get(n), minPayCount+ecn.cachedCounts.get(c)));
 			}
 		}
-		for( int i=0; i<50; i++ ) {
-			this.cachedCounts.set(this.cachedCounts.size()-1-i, this.cachedCounts.get(i));
+		for( int n=1; n<50; n++ ) {
+			this.cachedCounts.set(50+n, this.cachedCounts.get(50-n));
 		}
 		
 		return true;
