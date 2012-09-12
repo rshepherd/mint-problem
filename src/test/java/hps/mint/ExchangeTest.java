@@ -13,7 +13,7 @@ public class ExchangeTest
     @Test
     public void testComputationOnUsDenom()
     {
-        Exchange exchange = new Exchange(1.0F);
+        ExactChange exchange = new ExactChange(1.0F);
 
         Integer[] d = { 1, 5, 10, 25, 50 };
         List<Integer> denoms = Arrays.asList(d);

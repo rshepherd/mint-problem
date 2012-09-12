@@ -48,15 +48,20 @@ public class Main
     public Solution run(Float weight, Problem problem)
     {
         Solution s = null;
+        Mint mint;
         if (problem == Problem.EXACT)
         {
-            s = new ExactChange(weight).run();
+        	//s = new ExactChange(weight).run();
+        	mint = new ExactChange(weight);
         } else
         {
-            s = new Exchange(weight).run();
+        	//s = new ExactChange(weight).run();
+        	mint = new Exchange(weight);
         }
-        s.problem = problem;
-        s.print();
+        mint.compute();
+        mint.print();
+        //s.problem = problem;
+        //s.print();
         
         return s;
     }
