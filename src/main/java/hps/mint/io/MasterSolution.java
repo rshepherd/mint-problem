@@ -1,4 +1,4 @@
-package hps.mint;
+package hps.mint.io;
 
 /**
  * This is singlton solution file.
@@ -100,11 +100,11 @@ public class MasterSolution {
 		Global instance = Global.getInstance();
 		
 		
-		for(int i = 1 ; i < Cents.size(); i++){
+		for(int i = 1 ; i < counts_ecn.size(); i++){
 			if(i%5 == 0){
-				sum += instance.N * Cents.get(i).cost_ecn;
+				sum += instance.N * counts_ecn.get(i).cost_ecn;
 			}else{
-				sum += Cents.get(i).cost_ecn;
+				sum += counts_ecn.get(i).cost_ecn;
 			}
 		}
 		
@@ -117,11 +117,11 @@ public class MasterSolution {
 
 		Global instance = Global.getInstance();
 		
-		for(int i = 1 ; i < Cents.size(); i++){
+		for(int i = 1 ; i < counts_ex.size(); i++){
 			if(i%5 == 0){
-				sum += instance.N * Cents.get(i).cost_ex;
+				sum += instance.N * counts_ex.get(i).cost_ex;
 			}else{
-				sum += Cents.get(i).cost_ex;
+				sum += counts_ex.get(i).cost_ex;
 			}
 		}
 
@@ -142,6 +142,8 @@ public class MasterSolution {
 		return result;
 	
 	}
+
+
 	
 }
 
@@ -150,9 +152,11 @@ public class MasterSolution {
  * @author kunal
  *
  */
-class Cent{
-	//this represents the exact change number required to assemble current cent value 
-	int cost_ecn;
-	//this represents the exchange number required of current cent value 
-	int cost_ex;
+class Cent {
+    //this represents the exact change number required to assemble current cent value 
+    int cost_ecn;
+    //this represents the exchange number required of current cent value 
+    int cost_ex;
 }
+
+
