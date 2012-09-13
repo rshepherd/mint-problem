@@ -52,12 +52,12 @@ public class ExactChange {
 	}
 	
 	static public String coinsToString(List<Integer> coins) {
-		if( coins.size() == 0 )  return "[]";
-		StringBuilder sb = new StringBuilder("[");
+		if( coins.size() == 0 )  return "";
+		StringBuilder sb = new StringBuilder();
 		for( Integer c : coins ) {
 			sb.append(c+",");
 		}
-		sb.replace(sb.length()-1, sb.length(), "]");
+		sb.setLength(sb.length()-1);
 		return sb.toString();
 	}
 }

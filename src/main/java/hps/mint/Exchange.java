@@ -38,4 +38,30 @@ public class Exchange {
 		return counts;
 	}
 
+	static public String getCoinsString(List<Integer> counts, List<Integer> exactCounts, List<Integer> denoms, int sum) {
+		
+		StringBuilder sb = new StringBuilder();
+		for( int p=0; p<exactCounts.size(); p++ ) {   // iterate over p(Pay) values
+			int minChange = p - sum + ( p - sum < 0 ? 100 : 0 );
+			int minChangeCount = exactCounts.get(minChange);
+
+			int c2 = minChange + 100;
+			if( c2 < exactCounts.size() && exactCounts.get(c2) < minChangeCount ) {
+				minChangeCount = exactCounts.get(c2);
+				minChange = c2;
+			}
+			
+			if( counts.get(sum) == exactCounts.get(p) + minChangeCount ) {
+				List<Integer> pCoins = ExactChange.getCoins(exactCounts, denoms, p);
+				List<Integer> cCoins = ExactChange.getCoins(exactCounts, denoms, minChange);
+				sb.append("("+p+")");
+				sb.append(ExactChange.coinsToString(pCoins));
+				sb.append(":");
+				sb.append("("+minChange+")");
+				sb.append(ExactChange.coinsToString(cCoins));
+				return sb.toString();
+			}
+		}
+		return "";
+	}
 }

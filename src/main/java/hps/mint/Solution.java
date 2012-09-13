@@ -35,10 +35,12 @@ public class Solution
         System.out.println("Denom\t\t" + denomStr + "\nNumber\t\t" + N + "\nScore\t\t" + exactScore + "/" + exchangeScore);
         
         for( int sum=0; sum<100; sum++ ) {
-        	System.out.println(sum + ": " + ExactChange.coinsToString(ExactChange.getCoins(exactCounts, denoms, sum)));;
+        	System.out.println(sum + ": " + exactCounts.get(sum) 
+        			+ "[" + ExactChange.coinsToString(ExactChange.getCoins(exactCounts, denoms, sum)) + "]");
         }
         for( int sum=0; sum<100; sum++ ) {
-        	;  // print exchange numbers here
+        	System.out.println(sum + ": " + exchangeCounts.get(sum)
+        			+ "[" + Exchange.getCoinsString(exchangeCounts, exactCounts, denoms, sum) + "]");
         }
     }
     
