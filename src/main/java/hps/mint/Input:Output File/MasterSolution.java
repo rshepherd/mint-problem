@@ -1,3 +1,4 @@
+package hps.mint;
 
 /**
  * This is singlton solution file.

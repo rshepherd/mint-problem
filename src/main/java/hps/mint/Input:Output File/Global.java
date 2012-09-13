@@ -1,3 +1,5 @@
+package hps.mint;
+
 /**
  * 
  * Global Input File . 
