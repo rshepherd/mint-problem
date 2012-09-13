@@ -24,7 +24,7 @@ public class Solution
     public void print()
     {
         StringBuilder denomStr = new StringBuilder();
-        denomStr.append("1, ");
+        //denomStr.append("1, ");
         for (Integer d : denoms)
         {
             denomStr.append(d);
@@ -35,7 +35,7 @@ public class Solution
         System.out.println("Denom\t\t" + denomStr + "\nNumber\t\t" + N + "\nScore\t\t" + exactScore + "/" + exchangeScore);
         
         for( int sum=0; sum<100; sum++ ) {
-        	System.out.println(ExactChange.coinsToString(exactCounts, denoms, sum));
+        	System.out.println(sum + ": " + ExactChange.coinsToString(ExactChange.getCoins(exactCounts, denoms, sum)));;
         }
         for( int sum=0; sum<100; sum++ ) {
         	;  // print exchange numbers here

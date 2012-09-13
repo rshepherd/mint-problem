@@ -46,14 +46,6 @@ public class Mint {
     	return s;
     }
 	
-    /*
-     * This function should print the sets of coins needed for a each sum value.
-     */
-    public void print() {
-	for( int i=0; i<cachedCounts.size(); i++ )
-	    System.out.println( i + ": " + cachedCounts.get(i) );
-    }
-	
     static public float score(List<Integer> counts, float N) {
     	float sum = 0.0F;
     	for( int i=0; i<100; i++ )  // can't do for-each loop because exact change might have 100 + max_denom elements

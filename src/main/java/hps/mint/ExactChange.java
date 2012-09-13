@@ -31,7 +31,7 @@ public class ExactChange {
 		return counts;
 	}
 	
-	static public List<Integer> getCoins(ArrayList<Integer> counts, ArrayList<Integer> denoms, int sum) {
+	static public List<Integer> getCoins(List<Integer> counts, List<Integer> denoms, int sum) {
 		List<Integer> coins = new ArrayList<Integer>(10);
 		
 		while( sum % 100 > 0 )
@@ -51,7 +51,8 @@ public class ExactChange {
 		return coins;
 	}
 	
-	static public String coinsToString(List<Integer> coins, List<Integer> denoms, int sum) {
+	static public String coinsToString(List<Integer> coins) {
+		if( coins.size() == 0 )  return "[]";
 		StringBuilder sb = new StringBuilder("[");
 		for( Integer c : coins ) {
 			sb.append(c+",");

@@ -1,5 +1,6 @@
 package hps.mint;
 
+import hps.mint.Mint;
 
 public class Main
 {
