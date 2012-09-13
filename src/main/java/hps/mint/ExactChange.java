@@ -5,49 +5,41 @@ import java.util.List;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
 
-public class ExactChange extends Mint {
-	
-	public ExactChange(float N) {
-		super(N);
-	}
-	
-	// !!! Assumes sorted (in decreasing order) cachedDenoms
-	public boolean compute() {
-		System.out.println("INFO: ExactChage.compute()");
+public class ExactChange {
+		// !!! Assumes sorted (in decreasing order) cachedDenoms
+	static public ArrayList<Integer> compute(List<Integer> denoms, float N) {
 		
 		// Initialize map (sorted assumption)
-		if( this.cachedDenoms == null )
-			System.out.println("cachedDenoms is null");
-		this.cachedCounts = new ArrayList<Integer>(Collections.nCopies(100 + this.cachedDenoms.get(0), Integer.MAX_VALUE));
-		for( Integer i : this.cachedDenoms )
-			if( i < this.cachedCounts.size() )  this.cachedCounts.set(i, 1);
-		this.cachedCounts.set(0, 0);
-		if( this.cachedCounts.size() > 100 )
-			this.cachedCounts.set(100, 0);
+		ArrayList<Integer> counts = new ArrayList<Integer>(Collections.nCopies(100 + denoms.get(0), Integer.MAX_VALUE));
+		for( Integer i : denoms )
+			if( i < counts.size() )  counts.set(i, 1);
+		counts.set(0, 0);
+		if( counts.size() > 100 )
+			counts.set(100, 0);
 		
 		// Fill map
-		for( int i=0; i<this.cachedCounts.size(); i++ ) {
-			for( Integer j : this.cachedDenoms ) {
+		for( int i=0; i<counts.size(); i++ ) {
+			for( Integer j : denoms) {
 				if( j <= i ) {
-					int possibleMin = this.cachedCounts.get(i-j) + 1;
-					if( this.cachedCounts.get(i) > possibleMin )
-						this.cachedCounts.set(i, possibleMin);
+					int possibleMin = counts.get(i-j) + 1;
+					if( counts.get(i) > possibleMin )
+						counts.set(i, possibleMin);
 				}
 			}
 		}
 		
-		return true;
+		return counts;
 	}
 	
-	public List<Integer> getCoins(int sum) {
+	static public List<Integer> getCoins(ArrayList<Integer> counts, ArrayList<Integer> denoms, int sum) {
 		List<Integer> coins = new ArrayList<Integer>(10);
 		
 		while( sum % 100 > 0 )
 		{
-			for( Integer d : cachedDenoms )
+			for( Integer d : denoms )
 			{
 				if( sum < d )  { continue; }
-				if( cachedCounts.get(sum-d) == cachedCounts.get(sum)-1 )
+				if( counts.get(sum-d) == counts.get(sum)-1 )
 				{
 					coins.add(d);
 					sum -= d;
@@ -59,15 +51,12 @@ public class ExactChange extends Mint {
 		return coins;
 	}
 	
-	public void print() {
-		for( int i=0; i<cachedCounts.size(); i++ )
-		{
-			StringBuilder sb = new StringBuilder(i + ": " + cachedCounts.get(i) + ":[");
-			for( Integer d : getCoins(i) )
-				sb.append(d+" ");
-			sb.replace(sb.length()-1, sb.length(), "]");
-			System.out.println(sb);
+	static public String coinsToString(List<Integer> coins, List<Integer> denoms, int sum) {
+		StringBuilder sb = new StringBuilder("[");
+		for( Integer c : coins ) {
+			sb.append(c+",");
 		}
+		sb.replace(sb.length()-1, sb.length(), "]");
+		return sb.toString();
 	}
-	
 }

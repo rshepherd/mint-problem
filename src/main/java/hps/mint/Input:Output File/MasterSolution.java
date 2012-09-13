@@ -7,7 +7,7 @@
  *
  */
 
-import java.util.Vector;
+import java.util.List;
 import java.util.ArrayList;
 
 //this call is not made singleton
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 
 
-public class Solution {
+public class MasterSolution {
 
 	//define all parameters here which are the part of solution.
 	//all terms are used as per the given specs in the question
@@ -26,38 +26,39 @@ public class Solution {
 	//this array contains denominations for exact change number
 	//it will always have only 5 values
 	// all values must be less than 99
-	private Vector<Integer> denominations_ecn = new Vector<Integer>();
+	private ArrayList<Integer> denominations_ecn = new ArrayList<Integer>();
 	
 	
 	//this array contains denomination for exchange number
 	//it will always have only 5 values
 	// all values must be less than 99
-	private Vector<Integer> denominations_ex = new Vector<Integer>();
+	private ArrayList<Integer> denominations_ex = new ArrayList<Integer>();
 	
 	//Score is sum of the costs of all non-multiples of 5 + sum of N * costs of the multiples of 5
 	public double score_ecn = 0.0;
 	public double score_ex = 0.0; 
 
 	
-	//This vector is represents all cents values from
+	//This ArrayList is represents all cents values from
 	// 0 - 99 
-	public final ArrayList<Cent> Cents = new ArrayList<Cent>(100);
+	public final ArrayList<Cent> counts_ex = new ArrayList<Cent>(100);
+	public final ArrayList<Cent> counts_ecn = new ArrayList<Cent>(100);
 	
 	
 	//getters and setters
 	
-	public Vector<Integer> getDenominations_ecn(){
+	public ArrayList<Integer> getDenominations_ecn(){
 		return denominations_ecn;
 	}
 	
-	public void setDenominations_ecn(Vector<Integer> denominations_ecn) throws IllegalAccessException{
+	public void setDenominations_ecn(ArrayList<Integer> denominations_ecn) throws IllegalAccessException{
 		//to check its validity
 		
 		if(denominations_ecn.size() >5){
 			throw new IllegalAccessException("Cannot have more than 5 denominations");
 		}
 		
-		//all values in vector should be less than 99
+		//all values in ArrayList should be less than 99
 		for(Integer denomination_ecn : denominations_ecn){
 			if(denomination_ecn > 99){
 				throw new IllegalArgumentException("deomination for exact change number cannot be greater than 99");
@@ -68,18 +69,18 @@ public class Solution {
 	}
 	
 	
-	public Vector<Integer> getDenominations_ex(){
+	public ArrayList<Integer> getDenominations_ex(){
 		return denominations_ex;
 	}
 	
-	public void setDenominations_ex(Vector<Integer> denominations_ex) throws IllegalAccessException{
+	public void setDenominations_ex(ArrayList<Integer> denominations_ex) throws IllegalAccessException{
 		
 		//to check its validity
 		if(denominations_ex.size() >5){
 			throw new IllegalAccessException("Cannot have more than 5 denominations");
 		}
 		
-		//all values in vector should be less than 99
+		//all values in ArrayList should be less than 99
 		for(Integer denomination_ex : denominations_ecn){
 			if(denomination_ex > 99){
 				throw new IllegalArgumentException("deomination for exchange number cannot be greater than 99");
