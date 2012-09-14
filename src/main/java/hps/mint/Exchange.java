@@ -16,6 +16,8 @@ public class Exchange {
 		for( int n=0; n<50; n++ ) {
 			counts.set(n, exactCounts.get(n));
 			
+			if(exactCounts.get(n) < 3) continue;
+			
 			// pLTD = pay (less than dollar)
 			// pMTD = pay (more than dollar)
 			// Example: LTD sum(9)    5 coins: (5,1,1,1,1)

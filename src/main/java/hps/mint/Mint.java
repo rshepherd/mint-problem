@@ -27,6 +27,7 @@ public class Mint
         }
 
         System.out.println("Executing. N = " + weight);
+        
         new Conductor(weight).conduct();
         
         System.exit(1);
