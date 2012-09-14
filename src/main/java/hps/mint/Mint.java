@@ -100,9 +100,10 @@ public class Mint
 			out.write("EXCHANGE_NUMBER: \n");
 			out.write("COIN_VALUES: "+formatDenoms(exchangeSolution.denoms) + "\n");
 			
-			for( int i=0; i<100; i++ ) {
-	        	System.out.println(i + ": " + formatCoinsString(exchangeSolution.exchangeCounts, exchangeSolution.exactCounts, exchangeSolution.denoms, i) );
-	        }
+			for( int i=1; i<100; i++ ) {
+				out.write(i + ": " + formatCoinsString(exchangeSolution.exchangeCounts, exchangeSolution.exactCounts, exchangeSolution.denoms, i) );
+				out.write("\n");
+			}
 			
 			out.close();
 		}catch (Exception e){ 
@@ -112,22 +113,18 @@ public class Mint
 	}
 	
 	public static String formatDenoms(List<Integer> denoms) {
+				
+		String retVal = "";
 		
-//		Integer d1 = denoms.get(0);
-//		Integer d2 = denoms.get(1);
-//		Integer d3 = denoms.get(2);
-//		Integer d4 = denoms.get(3);
-//		Integer d5 = denoms.get(4);
+		for(int i = 0 ; i<denoms.size();i++){
 
-		//return (d1+","+d2+","+d3+","+d4+","+d5);
-		
-		String retVal = null;
-		
-		for(int i = 0 ; i<denoms.size();i++){ 
-			if(i != denoms.size() -1) // dont put , for the last value
-				retVal += denoms.get(i) + ",";
-			else
-				retVal += denoms.get(i);
+			if(denoms.get(i) != null){
+				
+				if(i != denoms.size() -1) // dont put , for the last value
+					retVal += denoms.get(i) + ",";
+				else
+					retVal += denoms.get(i);
+			}
 		}
 		
 		return retVal;
