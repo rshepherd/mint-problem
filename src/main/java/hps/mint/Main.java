@@ -68,7 +68,7 @@ public class Main
 		// Create output File
 		try{
 			// Create file 
-			FileWriter fstream = new FileWriter("mint_problem_output.txt");
+			FileWriter fstream = new FileWriter("rky-mint-output.txt.txt");
 			BufferedWriter out = new BufferedWriter(fstream);
 			
 			//Print EXACT_CHANGE_NUMBER:
@@ -81,7 +81,12 @@ public class Main
 			}
 			
 			//Print EXCHANGE_NUMBER
+			out.write("EXCHANGE_NUMBER: \n");
+			out.write("COIN_VALUES: "+formatDenoms(exchangeSolution.denoms) + "\n");
 			
+			for( int i=0; i<100; i++ ) {
+	        	System.out.println(i + ": " + formatCoinsString(exchangeSolution.exchangeCounts, exchangeSolution.exactCounts, exchangeSolution.denoms, i) );
+	        }
 			
 			//Close the output stream
 			out.close();
@@ -100,6 +105,32 @@ public class Main
 
 		return (d1+","+d2+","+d3+","+d4+","+d5);
 
+	}
+	
+	static public String formatCoinsString(List<Integer> counts, List<Integer> exactCounts, List<Integer> denoms, int sum) {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		for( int p=0; p<exactCounts.size(); p++ ) {   // iterate over p(Pay) values
+			int minChange = p - sum + ( p - sum < 0 ? 100 : 0 );
+			int minChangeCount = exactCounts.get(minChange);
+
+			int c2 = minChange + 100;
+			if( c2 < exactCounts.size() && exactCounts.get(c2) < minChangeCount ) {
+				minChangeCount = exactCounts.get(c2);
+				minChange = c2;
+			}
+			
+			if( counts.get(sum) == exactCounts.get(p) + minChangeCount ) {
+				List<Integer> pCoins = ExactChange.getCoins(exactCounts, denoms, p);
+				List<Integer> cCoins = ExactChange.getCoins(exactCounts, denoms, minChange);
+				sb.append(ExactChange.coinsToString(pCoins));
+				sb.append(";");
+				sb.append(ExactChange.coinsToString(cCoins));
+				return sb.toString();
+			}
+		}
+		return "";
 	}
 
 }
