@@ -112,13 +112,26 @@ public class Mint
 	}
 	
 	public static String formatDenoms(List<Integer> denoms) {
-		Integer d1 = denoms.get(0);
-		Integer d2 = denoms.get(1);
-		Integer d3 = denoms.get(2);
-		Integer d4 = denoms.get(3);
-		Integer d5 = denoms.get(4);
+		
+//		Integer d1 = denoms.get(0);
+//		Integer d2 = denoms.get(1);
+//		Integer d3 = denoms.get(2);
+//		Integer d4 = denoms.get(3);
+//		Integer d5 = denoms.get(4);
 
-		return (d1+","+d2+","+d3+","+d4+","+d5);
+		//return (d1+","+d2+","+d3+","+d4+","+d5);
+		
+		String retVal = null;
+		
+		for(int i = 0 ; i<denoms.size();i++){ 
+			if(i != denoms.size() -1) // dont put , for the last value
+				retVal += denoms.get(i) + ",";
+			else
+				retVal += denoms.get(i);
+		}
+		
+		return retVal;
+		
 	}
 	
 	public static String formatCoinsString(List<Integer> counts, List<Integer> exactCounts, List<Integer> denoms, int sum) {
