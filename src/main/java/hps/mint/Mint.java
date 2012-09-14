@@ -6,31 +6,30 @@ import java.util.List;
 
 public class Mint
 {
-	// These would contain the best solutions
+	private static final Long startTime = System.currentTimeMillis();
+	
 	private static Solution exactChangeSolution;
 	private static Solution exchangeSolution;
 	
 	public static void main(String[] args)
     {
-        if (args.length != 1)
-        {
+        if (args.length != 1) {
             usage(args);
             System.exit(-1);
         }
 
         Float weight = 1.0F;
-        try
-        {
+        try {
             weight = Float.valueOf(args[0]);
-        }
-        catch (NumberFormatException e)
-        {
+        } catch (NumberFormatException e)  {
             usage(args);
             System.exit(-1);
         }
 
         System.out.println("Executing. N = " + weight);
         new Conductor(weight).conduct();
+        
+        System.exit(1);
     }
 	
 	private static void usage(String[] args)
@@ -92,7 +91,7 @@ public class Mint
 			out.write("COIN_VALUES: "+formatDenoms(exactChangeSolution.denoms) + "\n");
 			
 			//Iterate through all values 
-			for(int i =0 ; i < 100 ; i++){
+			for(int i =1 ; i < 100 ; i++){
 				out.write(i+": "+formatDenoms(ExactChange.getCoins(exactChangeSolution.exactCounts, exactChangeSolution.denoms, i))+"\n");
 			}
 			
@@ -108,6 +107,7 @@ public class Mint
 		}catch (Exception e){ 
 			e.printStackTrace(System.out);
 		}
+		System.out.println("Done in ~" + ((System.currentTimeMillis() - startTime) / 1000) + " seconds");
 	}
 	
 	public static String formatDenoms(List<Integer> denoms) {

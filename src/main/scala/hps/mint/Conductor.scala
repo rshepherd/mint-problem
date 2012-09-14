@@ -29,7 +29,6 @@ class Conductor(weight: Float) {
     while (running) {}
     
     System.out.println("Shutting down.")
-    System.exit(1)
   }
 
   def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
@@ -81,7 +80,7 @@ class Counter(conductor: Conductor) extends Actor {
         case c: IncCount =>
           count += 1
           if(count % 50000 == 0) {
-            System.out.println("Processing denomination " + count + " of " + stopAt)
+            System.out.println("Processing " + count + " of " + stopAt)
           }
           if (count == stopAt) {
             System.out.println("Stopping at " + count + " of " + stopAt)
