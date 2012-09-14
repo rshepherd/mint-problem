@@ -1,7 +1,6 @@
 package hps.mint;
 
 import static org.junit.Assert.assertTrue;
-import hps.mint.Solution.Problem;
 
 import org.junit.Test;
 

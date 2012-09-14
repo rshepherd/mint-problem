@@ -4,10 +4,7 @@ import java.util.List;
 
 public class Solution
 {
-    public enum Problem {
-        EXACT, EXCHANGE
-    }
-
+	
     public List<Integer> denoms;
     public List<Integer> exactCounts;
     public List<Integer> exchangeCounts;
