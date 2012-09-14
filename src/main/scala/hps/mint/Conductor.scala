@@ -8,8 +8,6 @@ object ConductorHarness extends App {
   new Conductor(4.0F) conduct
 }
 
-class Denomination(var denom: List[Int])
-
 class Conductor(weight: Float) {
 
   @volatile var running = true
@@ -20,9 +18,11 @@ class Conductor(weight: Float) {
   def conduct() = {
     counter.start
     
-    (2 to 99).toList.combinations(4)
-      .filter(d => relativelyPrime(d))
-      .foreach(d => { solver ! new Denomination(1 :: d) })
+    (2 to 50).toList.combinations(4)
+      .foreach(d => { 
+        counter ! new IncStopAt  
+        solver ! new Denomination(1 :: d) 
+      })
 
     solver.start 
     
@@ -31,18 +31,9 @@ class Conductor(weight: Float) {
     System.out.println("Shutting down.")
   }
 
-  def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
-
-  def relativelyPrime(denoms: List[Int]): Boolean = {
-    for (d1 <- denoms)
-      for (d2 <- denoms if d2 != d1)
-        if (gcd(d1, d2) != 1)
-          return false
-    counter ! new IncStopAt
-    true
-  }
-
 }
+
+class Denomination(var denom: List[Int])
 
 class Solver(counter: Counter, weight: Float) extends Actor {
 
@@ -55,7 +46,6 @@ class Solver(counter: Counter, weight: Float) extends Actor {
         case d: Denomination => 
           Mint.judge(Change.compute(d.denom,weight))
           counter ! new IncCount
-        case _ => Unit
       }
     }
   }
