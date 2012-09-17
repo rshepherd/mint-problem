@@ -2,7 +2,10 @@ package hps.mint;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.List;
+
+import scala.Array;
 
 public class Mint
 {
@@ -84,7 +87,7 @@ public class Mint
 		// Create output File
 		try{
 			// Create file 
-			FileWriter fstream = new FileWriter("rky-mint-output.txt.txt");
+			FileWriter fstream = new FileWriter("rky-mint-output.txt");
 			BufferedWriter out = new BufferedWriter(fstream);
 			
 			//Print EXACT_CHANGE_NUMBER:
@@ -93,15 +96,23 @@ public class Mint
 			
 			//Iterate through all values 
 			for(int i =1 ; i < 100 ; i++){
-				out.write(i+": "+formatDenoms(ExactChange.getCoins(exactChangeSolution.exactCounts, exactChangeSolution.denoms, i))+"\n");
+				//append 100 (a dollar coin for denominations)
+				
+				out.write(i+": "+formatDenoms(ExactChange.getCoins(exactChangeSolution.exactCounts,exactChangeSolution.denoms, i))+"\n");
 			}
 			
 			//Print EXCHANGE_NUMBER
-			out.write("EXCHANGE_NUMBER: \n");
+			out.write("\n EXCHANGE_NUMBER: \n");
 			out.write("COIN_VALUES: "+formatDenoms(exchangeSolution.denoms) + "\n");
 			
 			for( int i=1; i<100; i++ ) {
-				out.write(i + ": " + formatCoinsString(exchangeSolution.exchangeCounts, exchangeSolution.exactCounts, exchangeSolution.denoms, i) );
+				
+				//add denominations of 100
+				List<Integer> denomsWith100 = new ArrayList<Integer>();
+				denomsWith100.add(100);
+				denomsWith100.addAll(exchangeSolution.denoms);
+				
+				out.write(i + ": " + formatCoinsString(exchangeSolution.exchangeCounts, exchangeSolution.exactCounts,denomsWith100, i) );
 				out.write("\n");
 			}
 			
@@ -146,8 +157,19 @@ public class Mint
 			}
 			
 			if( counts.get(sum) == exactCounts.get(p) + minChangeCount ) {
+				
+				if(p - sum < 0 ){
+					p= p+100;
+				}
+				
 				List<Integer> pCoins = ExactChange.getCoins(exactCounts, denoms, p);
 				List<Integer> cCoins = ExactChange.getCoins(exactCounts, denoms, minChange);
+				
+				if(pCoins.size() == 0){
+					//take into account the special case for dollar
+					pCoins.add(100);
+				}
+				
 				sb.append(ExactChange.coinsToString(pCoins));
 				sb.append(";");
 				sb.append(ExactChange.coinsToString(cCoins));

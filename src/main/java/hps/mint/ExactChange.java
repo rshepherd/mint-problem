@@ -39,6 +39,21 @@ public class ExactChange {
 			for( Integer d : denoms )
 			{
 				if( sum < d )  { continue; }
+				
+				System.out.println("value 1="+counts.get(sum-d));
+				System.out.println("value 2="+(counts.get(sum)-1));
+				
+				//edited by kunal balani
+				//special case when denomination is by 100
+				if(d == 100){
+					if( counts.get(sum-d) == counts.get(sum) )
+					{
+						coins.add(d);
+						sum -= d;
+						break;
+					}
+				}
+				
 				if( counts.get(sum-d) == counts.get(sum)-1 )
 				{
 					coins.add(d);
