@@ -18,7 +18,7 @@ class Conductor(weight: Float) {
   def conduct() = {
     counter.start
     
-    (2 to 50).toList.combinations(4)
+    (1 to 75).toList.combinations(5)
       .foreach(d => { 
         counter ! new IncStopAt  
         solver ! new Denomination(1 :: d) 
