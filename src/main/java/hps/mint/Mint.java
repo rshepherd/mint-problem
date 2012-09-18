@@ -101,8 +101,9 @@ public class Mint
 				out.write(i+": "+formatDenoms(ExactChange.getCoins(exactChangeSolution.exactCounts,exactChangeSolution.denoms, i))+"\n");
 			}
 			
+			out.write("//");
 			//Print EXCHANGE_NUMBER
-			out.write("\n EXCHANGE_NUMBER: \n");
+			out.write("\n\nEXCHANGE_NUMBER: \n");
 			out.write("COIN_VALUES: "+formatDenoms(exchangeSolution.denoms) + "\n");
 			
 			for( int i=1; i<100; i++ ) {
@@ -115,7 +116,7 @@ public class Mint
 				out.write(i + ": " + formatCoinsString(exchangeSolution.exchangeCounts, exchangeSolution.exactCounts,denomsWith100, i) );
 				out.write("\n");
 			}
-			
+			out.write("//");
 			out.close();
 		}catch (Exception e){ 
 			e.printStackTrace(System.out);
