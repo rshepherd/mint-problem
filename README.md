@@ -17,9 +17,9 @@ This command will compile, run the tests, package and emit an executable jar fil
 
 You can then execute the jar file with the following command
 
-    java -jar target/mint-1.0.0.jar 1 exact|exchange
+    java -jar target/rky-mint-1.0.0.jar 1
 
-The first argument is the N.
+The argument is the N.
     
 Alternatively, you can just use the command
     
