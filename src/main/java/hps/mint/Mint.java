@@ -165,9 +165,19 @@ public class Mint
 				List<Integer> pCoins = ExactChange.getCoins(exactCounts, denoms, p);
 				List<Integer> cCoins = ExactChange.getCoins(exactCounts, denoms, minChange);
 				
+				//to add 100 while printing
 				if(pCoins.size() == 0){
-					//take into account the special case for dollar
-					pCoins.add(100);
+					
+					//find sum of cCoins 
+					int total =0;
+					for (int i = 0; i < cCoins.size(); i++) {
+						total += cCoins.get(i);
+					}
+				
+					while(total > 0 ){
+						pCoins.add(100);
+						total = total - 100;
+					}
 				}
 				
 				sb.append(ExactChange.coinsToString(pCoins));

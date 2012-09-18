@@ -40,9 +40,6 @@ public class ExactChange {
 			{
 				if( sum < d )  { continue; }
 				
-				System.out.println("value 1="+counts.get(sum-d));
-				System.out.println("value 2="+(counts.get(sum)-1));
-				
 				//edited by kunal balani
 				//special case when denomination is by 100
 				if(d == 100){
