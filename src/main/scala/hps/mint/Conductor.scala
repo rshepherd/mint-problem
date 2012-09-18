@@ -12,20 +12,16 @@ class Conductor(weight: Float) {
 
   @volatile var running = true
 
-  val multOfFive = List(5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95)
-  
   val counter = new Counter(this)
   val solver = new Solver(counter, weight)
 
   def conduct() = {
     counter.start
     
-    (1 to 50).toList.combinations(4)
-      .foreach(denoms => { 
-         for (m <- multOfFive if !denoms.contains(m)) {
-          counter ! new IncStopAt  
-          solver ! new Denomination(m :: denoms) 
-        }
+    (2 to 50).toList.combinations(4)
+      .foreach(d => { 
+         counter ! new IncStopAt  
+         solver ! new Denomination(1 :: d)
       })
 
     solver.start 
