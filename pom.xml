@@ -6,7 +6,7 @@
   <artifactId>mint</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
-  <name>mint</name>
+  <name>rky-mint</name>
   <url>http://maven.apache.org</url>
 
   <properties>
