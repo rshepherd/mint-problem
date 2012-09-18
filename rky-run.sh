@@ -1,2 +1,2 @@
 #!/bin/bash
-java -jar -Xms256m -Xmx512m mint-1.0.0.jar "$@"
+java -jar -Xms512m -Xmx1024m rky-mint-1.0.0.jar "$@"
