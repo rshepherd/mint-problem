@@ -24,6 +24,8 @@ class Conductor(weight: Float) {
          solver ! new Denomination(1 :: d)
       })
 
+    System.out.println("Combinations generated.")
+
     solver.start 
     
     while (running) {}
@@ -69,11 +71,8 @@ class Counter(conductor: Conductor) extends Actor {
       receive {
         case c: IncCount =>
           count += 1
-          if(count % 50000 == 0) {
-            System.out.println("Processing " + count + " of " + stopAt)
-          }
           if (count == stopAt) {
-            System.out.println("Stopping at " + count + " of " + stopAt)
+            System.out.println(count + " denominations processed.")
             Mint.stop
             conductor.running = false
           }
